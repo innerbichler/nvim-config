@@ -1,6 +1,6 @@
-Time = os.time()
-Speed = 0
-High = 0
+local Time = os.time()
+local Speed = 0
+local High = 0
 local function game()
 	Speed = Speed + 1
 	local text = "Speed: " .. Speed .." --- Score: " .. High
@@ -14,8 +14,14 @@ local function game()
 	end
 	return text
 end
-local function message()
-	return "Welcome Alexander"
+local Start = os.time()
+local Line = Get_random_headline()
+local function news()
+	if os.time() > Start + 30 then
+		Start = os.time()
+		Line = Get_random_headline()
+	end
+	return Line
 end
 
 require('lualine').setup {
@@ -33,7 +39,7 @@ require('lualine').setup {
 		lualine_a = {"mode"},
 		lualine_b = {"windows"},
 		lualine_c = {},
-		lualine_x = {message},
+		lualine_x = {news},
 		lualine_y = {"branch"},
 		lualine_z = {"diff"}
 	},
