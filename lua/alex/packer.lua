@@ -35,5 +35,3 @@ return require('packer').startup(function(use)
 	use 'voldikss/vim-floaterm'
 	use 'nvim-lualine/lualine.nvim'
 end)
-	  
-	
