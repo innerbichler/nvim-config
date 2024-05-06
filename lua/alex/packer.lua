@@ -8,6 +8,7 @@ return require('packer').startup(function(use)
 	use 'marko-cerovac/material.nvim'
 	use { "ellisonleao/gruvbox.nvim" }
 	use "nvim-lua/plenary.nvim"
+	use 'earthly/earthly.vim'
 	use { 
 		'ThePrimeagen/harpoon',
 		branch = "harpoon2",
