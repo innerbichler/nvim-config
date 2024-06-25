@@ -19,11 +19,11 @@ local function fetch_rss_feed()
 end
 
 local function extract_headlines(xml_data)
-    local headlines = {}
-    for headline in xml_data:gmatch("<title><!%[CDATA%[(.-)%]%]></title>") do
-        table.insert(headlines, headline)
-    end
-    return headlines
+	local headlines = {}
+	for headline in xml_data:gmatch("<title><!%[CDATA%[(.-)%]%]></title>") do
+		table.insert(headlines, headline)
+	end
+	return headlines
 end
 
 local Lasttime = os.time()

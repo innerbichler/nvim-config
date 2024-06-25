@@ -8,6 +8,8 @@ return require('packer').startup(function(use)
 	use 'marko-cerovac/material.nvim'
 	use { "ellisonleao/gruvbox.nvim" }
 	use "nvim-lua/plenary.nvim"
+	use "mofiqul/vscode.nvim"
+	use 'chriskempson/base16-vim'
 	use 'earthly/earthly.vim'
 	use { 
 		'ThePrimeagen/harpoon',
