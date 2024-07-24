@@ -29,8 +29,8 @@ vim.keymap.set("n", "<leader>j", function() toggle_telescope(harpoon:list()) end
 --vim.keymap.set('n', '<leader>m', require("harpoon.ui").nav_prev, {})
 
 -- colorscheme
---vim.cmd('highlight! HarpoonInactive guibg=NONE guifg=#63698c')
+--vim.cmd('highlight! HarpoonInactive guibg=NONE guifg=NONE')
 --vim.cmd('highlight! HarpoonActive guibg=NONE guifg=white')
---vim.cmd('highlight! HarpoonNumberActive guibg=NONE guifg=#7aa2f7')
+--vim.cmd('highlight! HarpoonNumberActive guibg=NONE guifg=NONE')
 --vim.cmd('highlight! HarpoonNumberInactive guibg=NONE guifg=#7aa2f7')
 --vim.cmd('highlight! TabLineFill guibg=NONE guifg=white')
