@@ -23,7 +23,7 @@ vim.keymap.set('n', '<leader>a', function() harpoon:list():add() end)
 vim.keymap.set('n', '<leader>n', function() harpoon:list():next() end)
 vim.keymap.set('n', '<leader>m', function() harpoon:list():prev() end)
 vim.keymap.set('n', '<leader>d', function() harpoon:list():remove() end)
-vim.keymap.set("n", "<leader>j", function() toggle_telescope(harpoon:list()) end,
+vim.keymap.set("n", "<leader>h", function() toggle_telescope(harpoon:list()) end,
     { desc = "Open harpoon window" })
 --vim.keymap.set('n', '<leader>n', require("harpoon.ui").nav_next, {})
 --vim.keymap.set('n', '<leader>m', require("harpoon.ui").nav_prev, {})

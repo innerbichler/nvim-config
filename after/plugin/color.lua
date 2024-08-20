@@ -4,6 +4,6 @@ function ApplyColor(color)
 
 end
 
-vim.cmd('hi Normal guibg=black ctermbg=black')
-vim.cmd('hi LineNr guibg=black ctermbg=black')
+vim.cmd('hi Normal guibg=#0f0f0f ctermbg=black')
+vim.cmd('hi LineNr guibg=#0f0f0f ctermbg=black')
 
