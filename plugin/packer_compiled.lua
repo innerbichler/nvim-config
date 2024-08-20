@@ -169,6 +169,11 @@ _G.packer_plugins = {
     path = "/home/ubuntu/.local/share/nvim/site/pack/packer/start/vim-floaterm",
     url = "https://github.com/voldikss/vim-floaterm"
   },
+  ["vim-fugitive"] = {
+    loaded = true,
+    path = "/home/ubuntu/.local/share/nvim/site/pack/packer/start/vim-fugitive",
+    url = "https://github.com/tpope/vim-fugitive"
+  },
   ["vscode.nvim"] = {
     loaded = true,
     path = "/home/ubuntu/.local/share/nvim/site/pack/packer/start/vscode.nvim",

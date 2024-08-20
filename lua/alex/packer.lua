@@ -11,6 +11,7 @@ return require('packer').startup(function(use)
 	use "mofiqul/vscode.nvim"
 	use 'chriskempson/base16-vim'
 	use 'earthly/earthly.vim'
+	use 'tpope/vim-fugitive'
 	use { 
 		'ThePrimeagen/harpoon',
 		branch = "harpoon2",

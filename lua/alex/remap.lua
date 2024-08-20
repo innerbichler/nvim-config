@@ -13,3 +13,9 @@ vim.api.nvim_set_keymap('n', '<leader>cn', ':cn<CR>', {})
 vim.api.nvim_set_keymap('n', '<leader>cN', ':cN<CR>', {})
 vim.api.nvim_set_keymap('n', '<leader>co', ':copen<CR>', {})
 vim.api.nvim_set_keymap('n', '<leader>cc', ':cclose<CR>', {})
+
+-- fugitive vim Git commands
+vim.api.nvim_set_keymap('n', '<leader>g', ':Git<CR>', {})
+vim.api.nvim_set_keymap('n', '<leader>gs', ':Git status<CR>', {})
+vim.api.nvim_set_keymap('n', '<leader>gc', ':Git commit -a<CR>', {})
+vim.api.nvim_set_keymap('n', '<leader>gd', ':Git diff<CR>', {})
