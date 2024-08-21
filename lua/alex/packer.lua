@@ -3,15 +3,27 @@ vim.cmd [[packadd packer.nvim]]
 return require('packer').startup(function(use)
 	-- Packer can manage itself
 	use 'wbthomason/packer.nvim'
+
 	use ('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
+
+	-- color schemes
 	use { 'rose-pine/neovim', as = 'rose-pine' }
-	use 'marko-cerovac/material.nvim'
 	use { "ellisonleao/gruvbox.nvim" }
-	use "nvim-lua/plenary.nvim"
+	use 'marko-cerovac/material.nvim'
 	use "mofiqul/vscode.nvim"
-	use 'chriskempson/base16-vim'
+	-- -- -- -- -- --
+
+	use "nvim-lua/plenary.nvim"
 	use 'earthly/earthly.vim'
 	use 'tpope/vim-fugitive'
+	
+	use({
+		"stevearc/conform.nvim",
+		config = function()
+		require("conform").setup()
+		end,
+	})
+
 	use { 
 		'ThePrimeagen/harpoon',
 		branch = "harpoon2",
