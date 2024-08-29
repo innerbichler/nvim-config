@@ -1,21 +1,21 @@
 require("alex")
-vim.cmd [[colorscheme retrobox]]
-vim.cmd [[tnoremap <Esc> <C-\><C-n>]]
-vim.opt.termguicolors = true
+vim.cmd([[colorscheme retrobox]])
+vim.cmd([[tnoremap <Esc> <C-\><C-n>]])
+--vim.opt.termguicolors = true
 
 -- Define the URL of the RSS feed
 local rss_url = "https://feeds.bbci.co.uk/news/world/europe/rss.xml"
 
 -- Define a function to fetch the RSS feed
 local function fetch_rss_feed()
-    -- Execute curl command to fetch the RSS feed
-    local command = "curl -s " .. rss_url  -- Use -s flag to suppress curl progress output
-    local handle = io.popen(command)
-    local result = handle:read("*a")
-    handle:close()
+	-- Execute curl command to fetch the RSS feed
+	local command = "curl -s " .. rss_url -- Use -s flag to suppress curl progress output
+	local handle = io.popen(command)
+	local result = handle:read("*a")
+	handle:close()
 
-    -- Return the fetched RSS feed content
-    return result
+	-- Return the fetched RSS feed content
+	return result
 end
 
 local function extract_headlines(xml_data)
