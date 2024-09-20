@@ -3,6 +3,7 @@ require("conform").setup({
 
 		lua = { "stylua" },
 		python = { "black" },
+		go = { "gofumpt" },
 	},
 })
 
