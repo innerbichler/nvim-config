@@ -4,6 +4,8 @@ require("conform").setup({
 		lua = { "stylua" },
 		python = { "black" },
 		go = { "gofumpt" },
+		json = { "prettier" },
+		yaml = { "yaml" },
 	},
 })
 

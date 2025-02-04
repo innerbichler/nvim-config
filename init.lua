@@ -43,3 +43,17 @@ function Get_random_headline()
 		return "No headlines available"
 	end
 end
+
+local function replace_with_base64()
+	local s = vim.fn.getpos("'<")
+	local e = vim.fn.getpos("'>")
+	if s[2] == e[2] then
+		local line = vim.fn.getline(s[2])
+		local selected_text = string.sub(line, s[3], e[3])
+		local encoded = vim.fn.system('echo -n "' .. selected_text .. '" | base64'):gsub("\n", "")
+		local new_line = string.sub(line, 1, s[3] - 1) .. encoded .. string.sub(line, e[3] + 1)
+		vim.fn.setline(s[2], new_line)
+	end
+end
+
+vim.keymap.set("v", "<leader>b", replace_with_base64, { noremap = true })
