@@ -50,10 +50,11 @@ local function replace_with_base64()
 	if s[2] == e[2] then
 		local line = vim.fn.getline(s[2])
 		local selected_text = string.sub(line, s[3], e[3])
-		local encoded = vim.fn.system('echo -n "' .. selected_text .. '" | base64'):gsub("\n", "")
+		local encoded = vim.fn.system('echo -n "' .. selected_text .. '" | base64'):gsub("", "")
 		local new_line = string.sub(line, 1, s[3] - 1) .. encoded .. string.sub(line, e[3] + 1)
 		vim.fn.setline(s[2], new_line)
 	end
 end
 
+-- first select a text with v and then press v again and then <leader>b
 vim.keymap.set("v", "<leader>b", replace_with_base64, { noremap = true })
