@@ -1,4 +1,5 @@
 vim.g.mapleader = " "
+
 vim.api.nvim_set_keymap("n", "<leader>pf", ":Texplore<CR>", {})
 
 local function JavaGoogleFormat()
@@ -19,17 +20,22 @@ vim.api.nvim_set_keymap("n", "<leader>g", ":Git<CR>:resize<CR>", {})
 vim.api.nvim_set_keymap("n", "<leader>gs", ":Git status<CR>", {})
 vim.api.nvim_set_keymap("n", "<leader>gc", ":Git commit -a<CR>:resize<CR>", {})
 vim.api.nvim_set_keymap("n", "<leader>gd", ":Git diff<CR>:resize<CR>", {})
-vim.api.nvim_set_keymap("n", "<leader>gl", ":Git log<CR>:resize<CR>", {})
+vim.api.nvim_set_keymap("n", "<leader>gl", ":Git log --oneline <CR> :resize<CR>", {})
 
 -- resize
 vim.api.nvim_set_keymap("n", "<leader>rr", ":resize<CR>", {})
 
--- connect to masa guest pc
+-- connect to masa guest pc and save
 vim.api.nvim_set_keymap("n", "<leader>sm", ":Nread scp://guest@100.68.195.24/<CR>", {})
+vim.api.nvim_set_keymap("n", "<leader>w", ":w<CR>", {})
+vim.api.nvim_set_keymap("n", "<leader>p", ":q<CR>", {})
 
 -- tab control starts with nothing
 vim.api.nvim_set_keymap("n", "<leader>q", ":tabp<CR>", {})
 vim.api.nvim_set_keymap("n", "<leader>e", ":tabn<CR>", {})
 
 -- open underlying file in new tab
-vim.api.nvim_set_keymap("n", "<leader>a", ":<C-w>gf<CR>", {})
+vim.api.nvim_set_keymap("n", "<leader>a", "<C-w>gf<CR>", { noremap = true, silent = true })
+
+--clear search highlighting
+vim.api.nvim_set_keymap("n", "<leader>o", ":nohlsearch<CR>", {})
