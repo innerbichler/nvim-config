@@ -5,6 +5,8 @@ require("conform").setup({
 		python = { "black" },
 		go = { "gofumpt" },
 		json = { "prettier" },
+		css = { "prettier" },
+		html = { "prettier" },
 		yaml = { "yaml" },
 	},
 })

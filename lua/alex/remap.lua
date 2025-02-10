@@ -39,3 +39,6 @@ vim.api.nvim_set_keymap("n", "<leader>a", "<C-w>gf<CR>", { noremap = true, silen
 
 --clear search highlighting
 vim.api.nvim_set_keymap("n", "<leader>o", ":nohlsearch<CR>", {})
+
+-- avante
+vim.api.nvim_set_keymap("n", "<leader>at", ":AvanteToggle<CR>", {})
