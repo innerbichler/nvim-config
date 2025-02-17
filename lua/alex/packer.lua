@@ -15,6 +15,7 @@ return require("packer").startup(function(use)
 
 	use("earthly/earthly.vim")
 	use("tpope/vim-fugitive")
+	use("vague2k/vague.nvim")
 
 	use({
 		"stevearc/conform.nvim",
@@ -47,6 +48,16 @@ return require("packer").startup(function(use)
 			{ "L3MON4D3/LuaSnip" },
 		},
 	})
+	use({
+		"nvim-neotest/neotest",
+		requires = {
+			"nvim-neotest/nvim-nio",
+			"nvim-lua/plenary.nvim",
+			"antoinemadec/FixCursorHold.nvim",
+			"nvim-treesitter/nvim-treesitter",
+		},
+	})
+	use("nvim-neotest/neotest-python")
 	use("voldikss/vim-floaterm")
 	use("nvim-lualine/lualine.nvim")
 	use("stevearc/dressing.nvim")
@@ -60,9 +71,6 @@ return require("packer").startup(function(use)
 		"yetone/avante.nvim",
 		branch = "main",
 		run = "make",
-		config = function()
-			require("avante_lib").load()
-			require("avante").setup()
-		end,
+		config = function() end,
 	})
 end)

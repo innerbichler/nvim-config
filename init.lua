@@ -1,7 +1,7 @@
 require("alex")
-vim.cmd([[colorscheme retrobox]])
-vim.cmd([[tnoremap <Esc> <C-\><C-n>]])
---vim.opt.termguicolors = true
+vim.cmd([[colorscheme gruvbox]])
+--vim.cmd([[tnoremap <Esc> <C-\><C-n>]])
+vim.opt.termguicolors = true
 
 -- Define the URL of the RSS feed
 local rss_url = "https://feeds.bbci.co.uk/news/world/europe/rss.xml"

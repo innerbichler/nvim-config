@@ -41,4 +41,12 @@ vim.api.nvim_set_keymap("n", "<leader>a", "<C-w>gf<CR>", { noremap = true, silen
 vim.api.nvim_set_keymap("n", "<leader>o", ":nohlsearch<CR>", {})
 
 -- avante
+-- alot of the avante stuf is already defined
 vim.api.nvim_set_keymap("n", "<leader>at", ":AvanteToggle<CR>", {})
+
+-- neotest
+vim.keymap.set("n", "<leader>na", "<cmd>Neotest attach<cr>", { desc = "Neotest - Run All Tests" })
+vim.keymap.set("n", "<leader>nj", "<cmd>Neotest jump<cr>", { desc = "Neotest - Run File Tests" })
+vim.keymap.set("n", "<leader>no", "<cmd>Neotest output-panel<cr>", { desc = "Neotest - Output Panel" })
+vim.keymap.set("n", "<leader>ns", "<cmd>Neotest summary<cr>", { desc = "Neotest - Summary Panel" })
+vim.keymap.set("n", "<leader>nr", "<cmd>Neotest run<cr>", { desc = "Neotest - Stop Running Tests" })
