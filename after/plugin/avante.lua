@@ -1,6 +1,9 @@
 -- deps:
 require("cmp").setup({
 	-- use recommended settings from above
+	sources = {
+		{ name = "nvim_lsp" }, -- If you have LSP sources, keep them
+	},
 })
 require("copilot").setup({
 	-- use recommended settings from above
@@ -8,7 +11,6 @@ require("copilot").setup({
 require("render-markdown").setup({
 	-- use recommended settings from above
 })
-
 require("avante_lib").load()
 require("avante").setup({
 	provider = "gemini",
