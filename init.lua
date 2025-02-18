@@ -1,6 +1,6 @@
 require("alex")
-vim.cmd([[colorscheme gruvbox]])
---vim.cmd([[tnoremap <Esc> <C-\><C-n>]])
+vim.cmd([[colorscheme vscode]])
+vim.cmd([[tnoremap <Esc> <C-\><C-n>]])
 vim.opt.termguicolors = true
 
 -- Define the URL of the RSS feed
