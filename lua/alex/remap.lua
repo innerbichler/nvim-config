@@ -19,7 +19,7 @@ vim.api.nvim_set_keymap("n", "<leader>cc", ":cclose<CR>", {})
 vim.api.nvim_set_keymap("n", "<leader>g", ":Git<CR>:resize<CR>", {})
 vim.api.nvim_set_keymap("n", "<leader>gs", ":Git status<CR>", {})
 vim.api.nvim_set_keymap("n", "<leader>gc", ":Git commit -a<CR>:resize<CR>", {})
-vim.api.nvim_set_keymap("n", "<leader>gd", ":Git diff<CR>:resize<CR>", {})
+vim.api.nvim_set_keymap("n", "<leader>gd", ":Gdiff<CR>", {})
 vim.api.nvim_set_keymap("n", "<leader>gl", ":Git log --oneline <CR> :resize<CR>", {})
 
 -- resize
