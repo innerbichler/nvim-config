@@ -8,6 +8,7 @@ require("conform").setup({
 		css = { "prettier" },
 		html = { "prettier" },
 		yaml = { "yaml" },
+		rust = { "rustfmt" },
 	},
 })
 
