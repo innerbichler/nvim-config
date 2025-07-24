@@ -6,14 +6,8 @@ return require("packer").startup(function(use)
 
 	use("nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" })
 
-	-- color schemes
-	use({ "rose-pine/neovim", as = "rose-pine" })
-	use({ "ellisonleao/gruvbox.nvim" })
-	use("marko-cerovac/material.nvim")
 	use("mofiqul/vscode.nvim")
-	-- -- -- -- -- --
 
-	use("earthly/earthly.vim")
 	use("tpope/vim-fugitive")
 	use("vague2k/vague.nvim")
 
@@ -58,6 +52,10 @@ return require("packer").startup(function(use)
 		},
 	})
 	use("nvim-neotest/neotest-python")
+	use("fredrikaverpil/neotest-golang")
+
+	use({ "chomosuke/term-edit.nvim", tag = "v1.*" })
+
 	use("voldikss/vim-floaterm")
 	use("nvim-lualine/lualine.nvim")
 	use("stevearc/dressing.nvim")
@@ -65,12 +63,12 @@ return require("packer").startup(function(use)
 	use("MunifTanjim/nui.nvim")
 	use("MeanderingProgrammer/render-markdown.nvim")
 
-	use("zbirenbaum/copilot.lua")
-
-	use({
-		"yetone/avante.nvim",
-		branch = "main",
-		run = "make",
-		config = function() end,
-	})
+	-- use("zbirenbaum/copilot.lua")
+	--
+	-- use({
+	-- 	"yetone/avante.nvim",
+	-- 	branch = "main",
+	-- 	run = "make",
+	-- 	config = function() end,
+	-- })
 end)

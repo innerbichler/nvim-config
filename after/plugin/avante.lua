@@ -1,26 +1,26 @@
--- deps:
-require("cmp").setup({
-	-- use recommended settings from above
-	sources = {
-		{ name = "nvim_lsp" }, -- If you have LSP sources, keep them
-	},
-})
-require("copilot").setup({
-	-- use recommended settings from above
-})
-require("render-markdown").setup({
-	-- use recommended settings from above
-})
-require("avante_lib").load()
-require("avante").setup({
-	provider = "gemini",
-	auto_suggestions_provider = "gemini",
-	---@type AvanteSupportedProvider
-	gemini = {
-		endpoint = "https://generativelanguage.googleapis.com/v1beta/models",
-		model = "gemini-2.0-flash-thinking-exp-01-21",
-		timeout = 30000, -- Timeout in milliseconds
-		temperature = 0,
-		max_tokens = 4096,
-	},
-})
+-- -- deps:
+-- require("cmp").setup({
+-- 	-- use recommended settings from above
+-- 	sources = {
+-- 		{ name = "nvim_lsp" }, -- If you have LSP sources, keep them
+-- 	},
+-- })
+-- require("copilot").setup({
+-- 	-- use recommended settings from above
+-- })
+-- require("render-markdown").setup({
+-- 	-- use recommended settings from above
+-- })
+-- require("avante_lib").load()
+-- require("avante").setup({
+-- 	provider = "gemini",
+-- 	auto_suggestions_provider = "gemini",
+-- 	---@type AvanteSupportedProvider
+-- 	gemini = {
+-- 		endpoint = "https://generativelanguage.googleapis.com/v1beta/models",
+-- 		model = "gemini-2.0-flash-thinking-exp-01-21",
+-- 		timeout = 30000, -- Timeout in milliseconds
+-- 		temperature = 0,
+-- 		max_tokens = 4096,
+-- 	},
+-- })

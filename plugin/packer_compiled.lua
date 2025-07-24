@@ -49,8 +49,8 @@ local function save_profiles(threshold)
 end
 
 time([[Luarocks path setup]], true)
-local package_path_str = "/home/ubuntu/.cache/nvim/packer_hererocks/2.1.1736781742/share/lua/5.1/?.lua;/home/ubuntu/.cache/nvim/packer_hererocks/2.1.1736781742/share/lua/5.1/?/init.lua;/home/ubuntu/.cache/nvim/packer_hererocks/2.1.1736781742/lib/luarocks/rocks-5.1/?.lua;/home/ubuntu/.cache/nvim/packer_hererocks/2.1.1736781742/lib/luarocks/rocks-5.1/?/init.lua"
-local install_cpath_pattern = "/home/ubuntu/.cache/nvim/packer_hererocks/2.1.1736781742/lib/lua/5.1/?.so"
+local package_path_str = "/home/ubuntu/.cache/nvim/packer_hererocks/2.1.1744317938/share/lua/5.1/?.lua;/home/ubuntu/.cache/nvim/packer_hererocks/2.1.1744317938/share/lua/5.1/?/init.lua;/home/ubuntu/.cache/nvim/packer_hererocks/2.1.1744317938/lib/luarocks/rocks-5.1/?.lua;/home/ubuntu/.cache/nvim/packer_hererocks/2.1.1744317938/lib/luarocks/rocks-5.1/?/init.lua"
+local install_cpath_pattern = "/home/ubuntu/.cache/nvim/packer_hererocks/2.1.1744317938/lib/lua/5.1/?.so"
 if not string.find(package.path, package_path_str, 1, true) then
   package.path = package.path .. ';' .. package_path_str
 end
@@ -84,12 +84,6 @@ _G.packer_plugins = {
     path = "/home/ubuntu/.local/share/nvim/site/pack/packer/start/LuaSnip",
     url = "https://github.com/L3MON4D3/LuaSnip"
   },
-  ["avante.nvim"] = {
-    config = { "\27LJ\2\n\v\0\0\1\0\0\0\1K\0\1\0\0" },
-    loaded = true,
-    path = "/home/ubuntu/.local/share/nvim/site/pack/packer/start/avante.nvim",
-    url = "https://github.com/yetone/avante.nvim"
-  },
   ["cmp-nvim-lsp"] = {
     loaded = true,
     path = "/home/ubuntu/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
@@ -101,25 +95,10 @@ _G.packer_plugins = {
     path = "/home/ubuntu/.local/share/nvim/site/pack/packer/start/conform.nvim",
     url = "https://github.com/stevearc/conform.nvim"
   },
-  ["copilot.lua"] = {
-    loaded = true,
-    path = "/home/ubuntu/.local/share/nvim/site/pack/packer/start/copilot.lua",
-    url = "https://github.com/zbirenbaum/copilot.lua"
-  },
   ["dressing.nvim"] = {
     loaded = true,
     path = "/home/ubuntu/.local/share/nvim/site/pack/packer/start/dressing.nvim",
     url = "https://github.com/stevearc/dressing.nvim"
-  },
-  ["earthly.vim"] = {
-    loaded = true,
-    path = "/home/ubuntu/.local/share/nvim/site/pack/packer/start/earthly.vim",
-    url = "https://github.com/earthly/earthly.vim"
-  },
-  ["gruvbox.nvim"] = {
-    loaded = true,
-    path = "/home/ubuntu/.local/share/nvim/site/pack/packer/start/gruvbox.nvim",
-    url = "https://github.com/ellisonleao/gruvbox.nvim"
   },
   harpoon = {
     loaded = true,
@@ -146,15 +125,15 @@ _G.packer_plugins = {
     path = "/home/ubuntu/.local/share/nvim/site/pack/packer/start/mason.nvim",
     url = "https://github.com/williamboman/mason.nvim"
   },
-  ["material.nvim"] = {
-    loaded = true,
-    path = "/home/ubuntu/.local/share/nvim/site/pack/packer/start/material.nvim",
-    url = "https://github.com/marko-cerovac/material.nvim"
-  },
   neotest = {
     loaded = true,
     path = "/home/ubuntu/.local/share/nvim/site/pack/packer/start/neotest",
     url = "https://github.com/nvim-neotest/neotest"
+  },
+  ["neotest-golang"] = {
+    loaded = true,
+    path = "/home/ubuntu/.local/share/nvim/site/pack/packer/start/neotest-golang",
+    url = "https://github.com/fredrikaverpil/neotest-golang"
   },
   ["neotest-python"] = {
     loaded = true,
@@ -201,15 +180,15 @@ _G.packer_plugins = {
     path = "/home/ubuntu/.local/share/nvim/site/pack/packer/start/render-markdown.nvim",
     url = "https://github.com/MeanderingProgrammer/render-markdown.nvim"
   },
-  ["rose-pine"] = {
-    loaded = true,
-    path = "/home/ubuntu/.local/share/nvim/site/pack/packer/start/rose-pine",
-    url = "https://github.com/rose-pine/neovim"
-  },
   ["telescope.nvim"] = {
     loaded = true,
     path = "/home/ubuntu/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
+  },
+  ["term-edit.nvim"] = {
+    loaded = true,
+    path = "/home/ubuntu/.local/share/nvim/site/pack/packer/start/term-edit.nvim",
+    url = "https://github.com/chomosuke/term-edit.nvim"
   },
   ["vague.nvim"] = {
     loaded = true,
@@ -234,10 +213,6 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: avante.nvim
-time([[Config for avante.nvim]], true)
-try_loadstring("\27LJ\2\n\v\0\0\1\0\0\0\1K\0\1\0\0", "config", "avante.nvim")
-time([[Config for avante.nvim]], false)
 -- Config for: conform.nvim
 time([[Config for conform.nvim]], true)
 try_loadstring("\27LJ\2\n5\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\fconform\frequire\0", "config", "conform.nvim")

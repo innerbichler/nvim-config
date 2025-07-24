@@ -3,5 +3,8 @@ require("neotest").setup({
 		require("neotest-python")({
 			dap = { justMyCode = false },
 		}),
+		require("neotest-golang")({
+			dap = { justMyCode = false },
+		}),
 	},
 })
