@@ -2,11 +2,12 @@ require("conform").setup({
 	formatters_by_ft = {
 
 		lua = { "stylua" },
-		python = { "black" },
+		python = { "ruff" },
 		go = { "gofumpt" },
 		json = { "prettier" },
 		css = { "prettier" },
 		html = { "prettier" },
+		vue = { "prettier" },
 		yaml = { "yaml" },
 		rust = { "rustfmt" },
 	},

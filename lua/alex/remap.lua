@@ -2,6 +2,9 @@ vim.g.mapleader = " "
 
 vim.api.nvim_set_keymap("n", "<leader>pf", ":Texplore<CR>", {})
 
+local opts = { noremap = true, silent = true }
+vim.api.nvim_set_keymap("n", "<leader>ö", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
+
 local function JavaGoogleFormat()
 	local current_file = vim.fn.expand("%:p")
 	vim.cmd("!java -jar ~/.config/nvim/google-java-format-1.22.0-all-deps.jar -i " .. current_file)
