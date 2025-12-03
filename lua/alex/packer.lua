@@ -7,6 +7,7 @@ return require("packer").startup(function(use)
 	use("nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" })
 
 	use("mofiqul/vscode.nvim")
+	use 'datsfilipe/vesper.nvim'
 
 	use("tpope/vim-fugitive")
 	use("vague2k/vague.nvim")
