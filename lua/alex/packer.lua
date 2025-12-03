@@ -72,4 +72,18 @@ return require("packer").startup(function(use)
 	-- 	run = "make",
 	-- 	config = function() end,
 	-- })
+
+	use("HakonHarnes/img-clip.nvim")
+	use("stevearc/dressing.nvim") -- for enhanced input UI
+	use("folke/snacks.nvim") -- for modern input UI
+
+	-- Avante.nvim with build process
+	use({
+		"yetone/avante.nvim",
+		branch = "main",
+		run = "make",
+		config = function()
+			require("avante").setup()
+		end,
+	})
 end)
