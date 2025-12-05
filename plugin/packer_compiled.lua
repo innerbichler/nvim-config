@@ -84,6 +84,12 @@ _G.packer_plugins = {
     path = "/home/alexander/.local/share/nvim/site/pack/packer/start/LuaSnip",
     url = "https://github.com/L3MON4D3/LuaSnip"
   },
+  ["avante.nvim"] = {
+    config = { "\27LJ\2\n4\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\vavante\frequire\0" },
+    loaded = true,
+    path = "/home/alexander/.local/share/nvim/site/pack/packer/start/avante.nvim",
+    url = "https://github.com/yetone/avante.nvim"
+  },
   ["cmp-nvim-lsp"] = {
     loaded = true,
     path = "/home/alexander/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
@@ -104,6 +110,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/alexander/.local/share/nvim/site/pack/packer/start/harpoon",
     url = "https://github.com/ThePrimeagen/harpoon"
+  },
+  ["img-clip.nvim"] = {
+    loaded = true,
+    path = "/home/alexander/.local/share/nvim/site/pack/packer/start/img-clip.nvim",
+    url = "https://github.com/HakonHarnes/img-clip.nvim"
   },
   ["lsp-zero.nvim"] = {
     loaded = true,
@@ -185,6 +196,11 @@ _G.packer_plugins = {
     path = "/home/alexander/.local/share/nvim/site/pack/packer/start/render-markdown.nvim",
     url = "https://github.com/MeanderingProgrammer/render-markdown.nvim"
   },
+  ["snacks.nvim"] = {
+    loaded = true,
+    path = "/home/alexander/.local/share/nvim/site/pack/packer/start/snacks.nvim",
+    url = "https://github.com/folke/snacks.nvim"
+  },
   ["telescope.nvim"] = {
     loaded = true,
     path = "/home/alexander/.local/share/nvim/site/pack/packer/start/telescope.nvim",
@@ -199,6 +215,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/alexander/.local/share/nvim/site/pack/packer/start/vague.nvim",
     url = "https://github.com/vague2k/vague.nvim"
+  },
+  ["vesper.nvim"] = {
+    loaded = true,
+    path = "/home/alexander/.local/share/nvim/site/pack/packer/start/vesper.nvim",
+    url = "https://github.com/datsfilipe/vesper.nvim"
   },
   ["vim-floaterm"] = {
     loaded = true,
@@ -222,6 +243,10 @@ time([[Defining packer_plugins]], false)
 time([[Config for conform.nvim]], true)
 try_loadstring("\27LJ\2\n5\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\fconform\frequire\0", "config", "conform.nvim")
 time([[Config for conform.nvim]], false)
+-- Config for: avante.nvim
+time([[Config for avante.nvim]], true)
+try_loadstring("\27LJ\2\n4\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\vavante\frequire\0", "config", "avante.nvim")
+time([[Config for avante.nvim]], false)
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then
