@@ -23,7 +23,6 @@ local function save_line(filename, linenumber, text, timestamp)
 	local found = nil
 	local count = 0
 	for i, e in ipairs(list) do
-		vim.notify("HELLO MISTER ROCKY" .. tostring(e.linenumber))
 		if e.linenumber == linenumber then
 			found = e 
 			break
@@ -36,20 +35,33 @@ local function save_line(filename, linenumber, text, timestamp)
 	table.insert(list, { linenumber = linenumber, text = text, timestamp = timestamp})
 	end
 	_save(db)
+	vim.notify("saved tought")
 	return found or list[#list]
+end
+
+local function fetch_line(filename, linenumber)
+	local db = _load()
+	db[filename] = db[filename] or {}
+	local list = db[filename]
+	local found = nil
+	for _, e in ipairs(list) do
+		if e.linenumber == linenumber then
+			found = e 
+			break
+		end
+	end
+	if found then
+		return found
+	end
+	local timestamp = os.date("!%H:%M:%S %d-%m-%Y ")
+	return {linenumber = linenumber, text = nil, timestamp = timestamp }
 end
 
 local function save_thoughts_lua(float_buf, filename, linenumber)
   source_buf = vim.fn.bufnr('#')
-  local dir = get_current_dir()
   local text = table.concat(vim.api.nvim_buf_get_lines(float_buf, 0, -1, false), "\n")
-  local win = (function() for _, w in ipairs(vim.fn.win_findbuf(source_buf)) do return w end end)()
   local timestamp = os.date("!%Y-%m-%dT%H:%M:%SZ")
-  local entry = { filename = filename, timestamp = timestamp, linenumber = linenumber, text = text }
-  local tbl ={filename =  e } 
-  local path = dir .."/.thoughts.alex.lua"
   save_line(filename, linenumber, text, timestamp)
-  --vim.notify("saved " .. path)
 end
 
 function ReplaceOverQuickFix()
@@ -59,13 +71,21 @@ function ReplaceOverQuickFix()
 	local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(buf), ':t')
 	local linenumber = vim.api.nvim_win_get_cursor(win)[1]
 
-	local qf = vim.fn.getqflist()
+	local line = fetch_line(filename, linenumber)
 
 	local buf = vim.api.nvim_create_buf(false, true)
+
+	-- need to split the lines up again
+	if line.text then
+		local lines = vim.split(line.text, "\n", { plain = true })
+		vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
+	end
+--	vim.api.nvim_buf_set_lines(buf, 0, -1, false, {""})
+
 	local ui = vim.api.nvim_list_uis()[1]
 	local width, height = 40,10
 
-	local title = " Thought " .. os.date("!%H:%M:%S %d-%m-%Y "),
+	local title = " Thought " .. line.timestamp .. " - " .. tostring(linenumber)
 	vim.api.nvim_set_option_value('modifiable', true, { buf = buf })
 	local win = vim.api.nvim_open_win(buf, true, {
 		relative = "editor",
@@ -85,9 +105,9 @@ function ReplaceOverQuickFix()
 
 
 	local function close()
+		save_thoughts_lua(buf,filename, linenumber)
 		if vim.api.nvim_win_is_valid(win)
 		then vim.api.nvim_win_close(win, true)
-		save_thoughts_lua(buf,filename, linenumber)
 		end
 	end
 	vim.keymap.set("n", "q", close, { buffer = buf })
