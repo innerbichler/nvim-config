@@ -85,7 +85,7 @@ local function save_thoughts_lua(float_buf, filename, linenumber)
 	end
 	local timestamp = os.date("!%H:%M:%S %d-%m-%Y ")
 	local buf = vim.fn.bufnr('#')
-	set_status_symbol(buf, linenumber, "€", "ErrorMsg")
+	set_status_symbol(buf, linenumber-1, "€", "ErrorMsg")
 	save_line(filename, linenumber, text, timestamp)
 end
 
