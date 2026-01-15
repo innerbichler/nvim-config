@@ -17,6 +17,7 @@ vim.api.nvim_set_keymap("n", "<leader>cn", ":cn<CR>", {})
 vim.api.nvim_set_keymap("n", "<leader>cN", ":cN<CR>", {})
 vim.api.nvim_set_keymap("n", "<leader>co", ":copen<CR>", {})
 vim.api.nvim_set_keymap("n", "<leader>cc", ":cclose<CR>", {})
+vim.api.nvim_set_keymap("n", "<leader>cf", ":lua ReplaceOverQuickFix()<CR>", {})
 
 -- fugitive vim Git commands start with g
 vim.api.nvim_set_keymap("n", "<leader>g", ":Git<CR>:resize<CR>", {})
@@ -53,3 +54,5 @@ vim.keymap.set("n", "<leader>nj", "<cmd>Neotest jump<cr>", { desc = "Neotest - R
 vim.keymap.set("n", "<leader>no", "<cmd>Neotest output-panel<cr>", { desc = "Neotest - Output Panel" })
 vim.keymap.set("n", "<leader>ns", "<cmd>Neotest summary<cr>", { desc = "Neotest - Summary Panel" })
 vim.keymap.set("n", "<leader>nr", "<cmd>Neotest run<cr>", { desc = "Neotest - Stop Running Tests" })
+
+
