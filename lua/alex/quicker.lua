@@ -58,10 +58,13 @@ local function fetch_line(filename, linenumber)
 end
 
 local function save_thoughts_lua(float_buf, filename, linenumber)
-  source_buf = vim.fn.bufnr('#')
-  local text = table.concat(vim.api.nvim_buf_get_lines(float_buf, 0, -1, false), "\n")
-  local timestamp = os.date("!%Y-%m-%dT%H:%M:%SZ")
-  save_line(filename, linenumber, text, timestamp)
+	source_buf = vim.fn.bufnr('#')
+	local text = table.concat(vim.api.nvim_buf_get_lines(float_buf, 0, -1, false), "\n")
+	if text == "" then
+		return
+	end
+	local timestamp = os.date("!%H:%M:%S %d-%m-%Y ")
+	save_line(filename, linenumber, text, timestamp)
 end
 
 function ReplaceOverQuickFix()
@@ -85,12 +88,12 @@ function ReplaceOverQuickFix()
 	local ui = vim.api.nvim_list_uis()[1]
 	local width, height = 40,10
 
-	local title = " Thought " .. line.timestamp .. " - " .. tostring(linenumber)
+	local title = " " .. tostring(linenumber) .." THOUGHT " .. line.timestamp
 	vim.api.nvim_set_option_value('modifiable', true, { buf = buf })
 	local win = vim.api.nvim_open_win(buf, true, {
 		relative = "editor",
 		row = math.floor((ui.height - height) / 4),
-		col = math.floor((ui.width - width)),
+		col = math.floor((ui.width - width -5)),
 		title=title,
 		width = width,
 		height = height,
