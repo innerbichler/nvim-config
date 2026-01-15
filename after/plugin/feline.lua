@@ -14,15 +14,6 @@ local function game()
 	end
 	return text
 end
-local Start = os.time()
-local Line = Get_random_headline()
-local function news()
-	if os.time() > Start + 30 then
-		Start = os.time()
-		Line = Get_random_headline()
-	end
-	return Line
-end
 
 require("lualine").setup({
 	options = {
