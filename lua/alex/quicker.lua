@@ -1,12 +1,15 @@
 local main_color = "#ff0044"
 
-local function get_current_dir()
-	local src = vim.api.nvim_buf_get_name(source_buf)
-	if src == "" then vim.notify("no source file", vim.log.levels.ERROR); return end
-	local dir = vim.fn.fnamemodify(src, ':p:h')
-	return dir
-end
 
+local namespace = vim.api.nvim_create_namespace("QuickerSymbols")
+
+local function set_status_symbol(bufnr, line, symbol, hl_group)
+  vim.api.nvim_buf_set_extmark(bufnr, namespace, line, 0, {
+    virt_text = { { symbol, hl_group } },
+    virt_text_pos = "overlay",            
+    right_gravity = true,
+  })
+end
 
 local function _db_path() return vim.fn.expand('%:p:h') .. '/.thoughts.alex.lua' end
 local function _load() local p=_db_path(); local ok,t=pcall(dofile,p); return (ok and type(t)=='table') and t or {} end
@@ -57,17 +60,36 @@ local function fetch_line(filename, linenumber)
 	return {linenumber = linenumber, text = nil, timestamp = timestamp }
 end
 
+function QuickerDeleteAllMarks()
+	local buf = vim.api.nvim_get_current_buf()
+	vim.api.nvim_buf_clear_namespace(buf, namespace, 0, -1)
+end
+function QuickerSetAllMarks()
+	local win = vim.api.nvim_get_current_win()
+	local buf = vim.api.nvim_win_get_buf(win)
+	local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(buf), ':t')
+
+	local db = _load()
+	db[filename] = db[filename] or {}
+	local list = db[filename]
+	for _, e in ipairs(list) do
+		set_status_symbol(buf, e.linenumber, "€", "ErrorMsg")
+	end
+end
+
 local function save_thoughts_lua(float_buf, filename, linenumber)
-	source_buf = vim.fn.bufnr('#')
+
 	local text = table.concat(vim.api.nvim_buf_get_lines(float_buf, 0, -1, false), "\n")
 	if text == "" then
 		return
 	end
 	local timestamp = os.date("!%H:%M:%S %d-%m-%Y ")
+	local buf = vim.fn.bufnr('#')
+	set_status_symbol(buf, linenumber, "€", "ErrorMsg")
 	save_line(filename, linenumber, text, timestamp)
 end
 
-function ReplaceOverQuickFix()
+function QuickerNewThought()
 	
 	local win = vim.api.nvim_get_current_win()
 	local buf = vim.api.nvim_win_get_buf(win)
@@ -116,4 +138,5 @@ function ReplaceOverQuickFix()
 	vim.keymap.set("n", "q", close, { buffer = buf })
 	vim.keymap.set("n", "<Esc>", close, { buffer = buf })
 end
+
 

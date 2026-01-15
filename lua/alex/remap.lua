@@ -17,7 +17,7 @@ vim.api.nvim_set_keymap("n", "<leader>cn", ":cn<CR>", {})
 vim.api.nvim_set_keymap("n", "<leader>cN", ":cN<CR>", {})
 vim.api.nvim_set_keymap("n", "<leader>co", ":copen<CR>", {})
 vim.api.nvim_set_keymap("n", "<leader>cc", ":cclose<CR>", {})
-vim.api.nvim_set_keymap("n", "<leader>cf", ":lua ReplaceOverQuickFix()<CR>", {})
+vim.api.nvim_set_keymap("n", "<leader>cf", ":lua QuickerNewThought()<CR>", {})
 
 -- fugitive vim Git commands start with g
 vim.api.nvim_set_keymap("n", "<leader>g", ":Git<CR>:resize<CR>", {})
