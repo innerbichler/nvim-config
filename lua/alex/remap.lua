@@ -17,7 +17,7 @@ vim.api.nvim_set_keymap("n", "<leader>cn", ":cn<CR>", {})
 vim.api.nvim_set_keymap("n", "<leader>cN", ":cN<CR>", {})
 vim.api.nvim_set_keymap("n", "<leader>co", ":copen<CR>", {})
 vim.api.nvim_set_keymap("n", "<leader>cc", ":cclose<CR>", {})
-vim.api.nvim_set_keymap("n", "<leader>cf", ":lua QuickerNewThought()<CR>", {})
+vim.api.nvim_set_keymap("n", "<leader>cf", ":lua QuickerNewThought()<CR> :lua QuickerSetAllMarks()<CR>", {})
 
 -- fugitive vim Git commands start with g
 vim.api.nvim_set_keymap("n", "<leader>g", ":Git<CR>:resize<CR>", {})
@@ -28,11 +28,6 @@ vim.api.nvim_set_keymap("n", "<leader>gl", ":Git log --oneline <CR> :resize<CR>"
 
 -- resize
 vim.api.nvim_set_keymap("n", "<leader>rr", ":resize<CR>", {})
-
--- connect to masa guest pc and save
-vim.api.nvim_set_keymap("n", "<leader>sm", ":Nread scp://guest@100.68.195.24/<CR>", {})
-vim.api.nvim_set_keymap("n", "<leader>w", ":w<CR>", {})
-vim.api.nvim_set_keymap("n", "<leader>p", ":q<CR>", {})
 
 -- tab control starts with nothing
 vim.api.nvim_set_keymap("n", "<leader>q", ":tabp<CR>", {})

@@ -1,12 +1,12 @@
 local main_color = "#ff0044"
-
-
 local namespace = vim.api.nvim_create_namespace("QuickerSymbols")
+local mark_icon = " " 
+local mark_highlight_group = "QuickerBorder"
 
-local function set_status_symbol(bufnr, line, symbol, hl_group)
+local function set_status_symbol(bufnr, line)
   vim.api.nvim_buf_set_extmark(bufnr, namespace, line, 0, {
-    virt_text = { { symbol, hl_group } },
-    virt_text_pos = "overlay",            
+    virt_text = { { mark_icon, mark_highlight_group } },
+    virt_text_pos = "inline",            
     right_gravity = true,
   })
 end
@@ -77,14 +77,19 @@ function QuickerSetAllMarks()
 	local win = vim.api.nvim_get_current_win()
 	local buf = vim.api.nvim_win_get_buf(win)
 	local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(buf), ':t')
+	local filedir = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(buf), ':p:h')
 
-
-	local db = _load()
+	local db = _load(filedir)
 	db[filename] = db[filename] or {}
 	local list = db[filename]
 	for _, e in ipairs(list) do
-		set_status_symbol(buf, e.linenumber, "€", "ErrorMsg")
+		set_status_symbol(buf, e.linenumber-1)
 	end
+end
+
+function QuickerUpdateMarks()
+	QuickerDeleteAllMarks()
+	QuickerSetAllMarks()
 end
 
 local function save_thoughts_lua(float_buf, filedir, filename, linenumber)
@@ -95,16 +100,15 @@ local function save_thoughts_lua(float_buf, filedir, filename, linenumber)
 	end
 	local timestamp = os.date("!%H:%M:%S %d-%m-%Y ")
 	local buf = vim.fn.bufnr('#')
-	set_status_symbol(buf, linenumber-1, "€", "ErrorMsg")
 	save_line(filedir, filename, linenumber, text, timestamp)
 end
 
 function QuickerNewThought()
 	
 	local win = vim.api.nvim_get_current_win()
-	local buf = vim.api.nvim_win_get_buf(win)
-	local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(buf), ':t')
-	local filedir = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(buf), ':p:h')
+	local main_buf = vim.api.nvim_win_get_buf(win)
+	local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(main_buf), ':t')
+	local filedir = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(main_buf), ':p:h')
 	local linenumber = vim.api.nvim_win_get_cursor(win)[1]
 
 	local line = fetch_line(filedir, filename, linenumber)
@@ -121,7 +125,7 @@ function QuickerNewThought()
 	local ui = vim.api.nvim_list_uis()[1]
 	local width, height = 40,10
 
-	local title = " " .. tostring(linenumber) .." THOUGHT " .. line.timestamp
+	local title = " " .. tostring(linenumber) .." THOUGHT  " .. line.timestamp .. ""
 	vim.api.nvim_set_option_value('modifiable', true, { buf = buf })
 	local win = vim.api.nvim_open_win(buf, true, {
 		relative = "editor",
@@ -142,6 +146,17 @@ function QuickerNewThought()
 
 	local function close()
 		save_thoughts_lua(buf, filedir, filename, linenumber)
+
+		-- update all marks here because of buffer stuff
+		vim.api.nvim_buf_clear_namespace(main_buf, namespace, 0, -1)
+
+		local db = _load(filedir)
+		db[filename] = db[filename] or {}
+		local list = db[filename]
+		for _, e in ipairs(list) do
+			set_status_symbol(main_buf, e.linenumber-1)
+		end
+
 		if vim.api.nvim_win_is_valid(win)
 		then vim.api.nvim_win_close(win, true)
 		end
