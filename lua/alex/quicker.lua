@@ -1,4 +1,5 @@
-local main_color = "#ff0044"
+local main_color = "#7fc8f8"
+local secondary_color = "#5b8e7d"
 local namespace = vim.api.nvim_create_namespace("QuickerSymbols")
 local mark_icon = " " 
 local mark_highlight_group = "QuickerBorder"
@@ -105,11 +106,11 @@ end
 
 function QuickerNewThought()
 	
-	local win = vim.api.nvim_get_current_win()
-	local main_buf = vim.api.nvim_win_get_buf(win)
+	local main_win = vim.api.nvim_get_current_win()
+	local main_buf = vim.api.nvim_win_get_buf(main_win)
 	local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(main_buf), ':t')
 	local filedir = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(main_buf), ':p:h')
-	local linenumber = vim.api.nvim_win_get_cursor(win)[1]
+	local linenumber = vim.api.nvim_win_get_cursor(main_win)[1]
 
 	local line = fetch_line(filedir, filename, linenumber)
 
@@ -120,12 +121,11 @@ function QuickerNewThought()
 		local lines = vim.split(line.text, "\n", { plain = true })
 		vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
 	end
---	vim.api.nvim_buf_set_lines(buf, 0, -1, false, {""})
 
 	local ui = vim.api.nvim_list_uis()[1]
 	local width, height = 40,10
 
-	local title = " " .. tostring(linenumber) .." THOUGHT  " .. line.timestamp .. ""
+	local title = " " .. tostring(linenumber) .."   " .. "TOUGHT".." "
 	vim.api.nvim_set_option_value('modifiable', true, { buf = buf })
 	local win = vim.api.nvim_open_win(buf, true, {
 		relative = "editor",
@@ -137,6 +137,7 @@ function QuickerNewThought()
 		style = "minimal",
 		border = "rounded"
 	})
+	vim.api.nvim_set_option_value("number", true, { win = win })
 	
 	vim.api.nvim_win_set_option(win, "winhl", "Normal:QuickerFloat,FloatBorder:QuickerBorder,FloatTitle:QuickerFloatTitle")
 	vim.api.nvim_set_hl(0, "QuickerFloat", { bg = "NONE" })
