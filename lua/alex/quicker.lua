@@ -11,16 +11,25 @@ local function set_status_symbol(bufnr, line, symbol, hl_group)
   })
 end
 
-local function _db_path() return vim.fn.expand('%:p:h') .. '/.thoughts.alex.lua' end
-local function _load() local p=_db_path(); local ok,t=pcall(dofile,p); return (ok and type(t)=='table') and t or {} end
-local function _save(t) 
-	local f=assert(io.open(_db_path(),'w'))
+--local function _db_path() return vim.fn.expand('%:p:h') .. '/.thoughts.alex.lua' end
+
+local function _db_path(filedir)
+  return filedir .. "/.thoughts.alex.lua"
+end
+
+local function _load(filedir)
+	local p=_db_path(filedir)
+	local ok,t=pcall(dofile,p)
+	return (ok and type(t)=='table') and t or {}
+end
+local function _save(t, filedir) 
+	local f=assert(io.open(_db_path(filedir),'w'))
 	f:write('return ' .. vim.inspect(t))
 	f:close()
 end
 
-local function save_line(filename, linenumber, text, timestamp)
-	local db = _load()
+local function save_line(filedir, filename, linenumber, text, timestamp)
+	local db = _load(filedir)
 	db[filename] = db[filename] or {}
 	local list = db[filename]
 	local found = nil
@@ -37,13 +46,13 @@ local function save_line(filename, linenumber, text, timestamp)
 	else
 	table.insert(list, { linenumber = linenumber, text = text, timestamp = timestamp})
 	end
-	_save(db)
+	_save(db, filedir)
 	vim.notify("saved tought")
 	return found or list[#list]
 end
 
-local function fetch_line(filename, linenumber)
-	local db = _load()
+local function fetch_line(filedir, filename, linenumber)
+	local db = _load(filedir)
 	db[filename] = db[filename] or {}
 	local list = db[filename]
 	local found = nil
@@ -69,6 +78,7 @@ function QuickerSetAllMarks()
 	local buf = vim.api.nvim_win_get_buf(win)
 	local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(buf), ':t')
 
+
 	local db = _load()
 	db[filename] = db[filename] or {}
 	local list = db[filename]
@@ -77,7 +87,7 @@ function QuickerSetAllMarks()
 	end
 end
 
-local function save_thoughts_lua(float_buf, filename, linenumber)
+local function save_thoughts_lua(float_buf, filedir, filename, linenumber)
 
 	local text = table.concat(vim.api.nvim_buf_get_lines(float_buf, 0, -1, false), "\n")
 	if text == "" then
@@ -86,7 +96,7 @@ local function save_thoughts_lua(float_buf, filename, linenumber)
 	local timestamp = os.date("!%H:%M:%S %d-%m-%Y ")
 	local buf = vim.fn.bufnr('#')
 	set_status_symbol(buf, linenumber-1, "€", "ErrorMsg")
-	save_line(filename, linenumber, text, timestamp)
+	save_line(filedir, filename, linenumber, text, timestamp)
 end
 
 function QuickerNewThought()
@@ -94,9 +104,10 @@ function QuickerNewThought()
 	local win = vim.api.nvim_get_current_win()
 	local buf = vim.api.nvim_win_get_buf(win)
 	local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(buf), ':t')
+	local filedir = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(buf), ':p:h')
 	local linenumber = vim.api.nvim_win_get_cursor(win)[1]
 
-	local line = fetch_line(filename, linenumber)
+	local line = fetch_line(filedir, filename, linenumber)
 
 	local buf = vim.api.nvim_create_buf(false, true)
 
@@ -130,7 +141,7 @@ function QuickerNewThought()
 
 
 	local function close()
-		save_thoughts_lua(buf,filename, linenumber)
+		save_thoughts_lua(buf, filedir, filename, linenumber)
 		if vim.api.nvim_win_is_valid(win)
 		then vim.api.nvim_win_close(win, true)
 		end
