@@ -4,7 +4,16 @@ return require("packer").startup(function(use)
 	-- Packer can manage itself
 	use("wbthomason/packer.nvim")
 
-	use("nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" })
+
+	use {
+		'nvim-treesitter/nvim-treesitter',
+		run = function()
+		local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
+		ts_update()
+		end,
+	}
+
+	use("seblyng/roslyn.nvim")
 
 	use("mofiqul/vscode.nvim")
 	use 'datsfilipe/vesper.nvim'
@@ -26,7 +35,7 @@ return require("packer").startup(function(use)
 	})
 	use({
 		"nvim-telescope/telescope.nvim",
-		tag = "0.1.8",
+		tag = "master",
 		-- or                            , branch = '0.1.x',
 		requires = { { "nvim-lua/plenary.nvim" } },
 	})
@@ -75,7 +84,6 @@ return require("packer").startup(function(use)
 	-- })
 
 	use("HakonHarnes/img-clip.nvim")
-	use("stevearc/dressing.nvim") -- for enhanced input UI
 	use("folke/snacks.nvim") -- for modern input UI
 
 	-- Avante.nvim with build process

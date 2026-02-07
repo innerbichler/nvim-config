@@ -1,6 +1,7 @@
 vim.g.mapleader = " "
 
 vim.api.nvim_set_keymap("n", "<leader>pf", ":Texplore<CR>", {})
+vim.api.nvim_set_keymap("n", "<leader>w", ":w<CR>", {})
 
 local opts = { noremap = true, silent = true }
 vim.api.nvim_set_keymap("n", "<leader>ö", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)

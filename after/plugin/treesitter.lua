@@ -1,7 +1,7 @@
-require'nvim-treesitter.configs'.setup {
+require'nvim-treesitter.config'.setup {
 
 	ensure_installed = {"java", "earthfile", "c","rust", "bash", "python", "lua","javascript", "html", "vim", "vimdoc", "query" },
-	sync_install = false,
+	sync_install = true,
 	auto_install = true,
 
 	highlight = {
